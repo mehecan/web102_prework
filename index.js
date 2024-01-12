@@ -153,7 +153,7 @@ const descriptionContainer = document.getElementById("description-container");
 const unfundedGamesNum = GAMES_JSON.filter( games => games.pledged < games.goal).length;
 
 // create a string that explains the number of unfunded games using the ternary operator
-let unfundedStr = unfundedGamesNum === 1 ? `A total of $${totalRaised.toLocaleString('en-US')} has been raised for ${GAMES_JSON.length} games. Currently 1 game remains unfunded. We need your help to fund these amazing games!` : `A total of $${totalRaised.toLocaleString('en-US')} has been raised for ${GAMES_JSON.length} games. Currently ${unfundedGamesNum} games remain unfunded. We need your help to fund these amazing games!`;
+let unfundedStr = unfundedGamesNum === 1 ? `A total of $${totalRaised.toLocaleString('en-US')} has been raised for ${GAMES_JSON.length} games. Currently, 1 game remains unfunded. We need your help to fund these amazing games!` : `A total of $${totalRaised.toLocaleString('en-US')} has been raised for ${GAMES_JSON.length} games. Currently, ${unfundedGamesNum} games remain unfunded. We need your help to fund these amazing games!`;
 
 // create a new DOM element containing the template string and append it to the description container
 const unfundedGamesElement = document.createElement('p');
@@ -174,7 +174,19 @@ const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
 });
 
 // use destructuring and the spread operator to grab the first and second games
-
+const [firstGame,secondGame, ...restOfGames] = sortedGames;
+console.log('First game',firstGame);
+console.log('Second game',secondGame);
 // create a new element to hold the name of the top pledge game, then append it to the correct element
-
+const firstGameElement = document.createElement('h3');
+const firstGameName = document.createTextNode(firstGame.name);
+firstGameElement.appendChild(firstGameName);
+firstGameContainer.appendChild(firstGameElement);
 // do the same for the runner up item
+const secondGameElement = document.createElement('h3');
+const secondGameName = document.createTextNode(secondGame.name);
+secondGameElement.appendChild(secondGameName);
+secondGameContainer.appendChild(secondGameElement);
+
+
+
