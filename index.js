@@ -125,12 +125,13 @@ function filterFundedOnly() {
     addGamesToPage(fundedGames);
 }
 
+let originalGameData = [...GAMES_JSON]; //preserve the original ordering of games
 // show all games
 function showAllGames() {
     deleteChildElements(gamesContainer);
 
     // add all games from the JSON data to the DOM
-    addGamesToPage(GAMES_JSON);
+    addGamesToPage(originalGameData);
 }
 
 /*
@@ -213,17 +214,14 @@ searchInput.addEventListener("input",(e)=>{
     filteredGamesByName(value);
 });
 
-function resetGames(){
-    addGamesToPage(GAMES_JSON);
-}
 clearBtn.addEventListener("click",()=> {
-    resetGames();
+    showAllGames();
     searchInput.value="";
 });
 
 function noResults(){
     const error = document.createElement('div');
     error.classList.add('game-card');
-    error.innerHTML = 'No results found!';
+    error.innerHTML = `<h3>No results found!</h3>`;
     gamesContainer.appendChild(error);
 }
