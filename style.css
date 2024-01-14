@@ -21,7 +21,6 @@ body {
 
 .stats-container {
     display: flex;
-    color: white;
     align-items: center;
 }
 
@@ -61,11 +60,16 @@ body {
     width: 300px;
     text-align: center;
     border-radius: 7px;
+    transition: background-color 0.15s, color 0.15s;
 }
 
 .game-card:hover {
     cursor: pointer;
     box-shadow: 0 0 30px lightblue;
+}
+.game-card:active{
+    background-color: #a8b0bc;
+    color: white;
 }
 
 #button-container {
@@ -78,4 +82,56 @@ button {
     padding: 1%;
     margin: 1%;
     border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, opacity 0.15s, color 0.15s;
+}
+button:hover{
+    opacity: 0.8;
+}
+button:active{
+    background-color: #a8b0bc ;
+    color: white;
+    opacity: 1;
+}
+.search-wrapper{
+    text-align:center;
+    margin-top: 8px;
+    vertical-align: top;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    
+}
+.games-search{
+    display: inline-block;
+    
+}
+form{
+    font-family: 'Cabin';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    font-family: 'Cabin';
+}
+form input{
+    flex:1;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border-style: solid;
+}
+form button{
+    padding: 8px;
+    background-color:tomato ; 
+    color: white;
+    border: none;
+    cursor: pointer; 
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.hide{
+    display: none;
 }

@@ -49,13 +49,14 @@ function addGamesToPage(games) {
         `;
         gamesContainer.appendChild(gameCard);
     }
+    if(games.length === 0){
+        noResults();
+    }
 }
 
 // append the game to the games-container
 addGamesToPage(GAMES_JSON);
         
-    
-
 
 // call the function we just defined using the correct variable
 // later, we'll call this function using a different list of games
@@ -132,6 +133,13 @@ function showAllGames() {
     addGamesToPage(GAMES_JSON);
 }
 
+/*
+function updateButtonState(){
+    unfundedBtn.classList.toggle("active",showUnfunded);
+    fundedBtn.classList.toggle("active",showFunded);
+    allBtn.classList.toggle("active",showUnfunded && showFunded);
+}
+*/
 // select each button in the "Our Games" section
 const unfundedBtn = document.getElementById("unfunded-btn");
 const fundedBtn = document.getElementById("funded-btn");
@@ -189,4 +197,33 @@ secondGameElement.appendChild(secondGameName);
 secondGameContainer.appendChild(secondGameElement);
 
 
+//extra stuff
 
+const searchInput = document.querySelector('.input');
+const clearBtn = document.querySelector('.clear-results')
+function filteredGamesByName(name){
+    const filteredGames = GAMES_JSON.filter((game) =>{
+        return game.name.toLowerCase().includes(name.toLowerCase());
+    });
+    deleteChildElements(gamesContainer);
+    addGamesToPage(filteredGames);
+}
+searchInput.addEventListener("input",(e)=>{
+    const value = e.target.value.trim().toLowerCase();
+    filteredGamesByName(value);
+});
+
+function resetGames(){
+    addGamesToPage(GAMES_JSON);
+}
+clearBtn.addEventListener("click",()=> {
+    resetGames();
+    searchInput.value="";
+});
+
+function noResults(){
+    const error = document.createElement('div');
+    error.classList.add('game-card');
+    error.innerHTML = 'No results found!';
+    gamesContainer.appendChild(error);
+}
